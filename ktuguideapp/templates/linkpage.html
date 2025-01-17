@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>Notes</title>
+  <link rel="icon" type="image/x-icon" href="{% static 'ktuguideapp/images/ktuguide icon.png' %}">
+
+  <!-- slider stylesheet -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href=" {% static 'ktuguideapp/css/bootstrap.css' %} " />
+
+  <!-- fonts style -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,700&display=swap" rel="stylesheet">
+  <!-- Custom styles for this template -->
+  <link href=" {% static 'ktuguideapp/css/linkpage.css' %} " rel="stylesheet" />
+  <!-- responsive style -->
+  <link href=" {% static 'ktuguideapp/css/responsive.css' %} " rel="stylesheet" />
+</head>
+
+<body class="sub_page">
+  <div class="hero_area">
+    <!-- header section strats -->
+    <header class="header_section">
+      <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg custom_nav-container ">
+          <a class="navbar-brand" href=" {% url 'index' %} ">
+            <span>
+              KTU GUIDE
+            </span>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex ml-auto flex-column flex-lg-row align-items-center">
+              <ul class="navbar-nav  ">
+                <li class="nav-item ">
+                  <a class="nav-link" href=" {% url 'index' %} ">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href=" {% url 'scheme2019' %} "> 2019 Scheme</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href=" {% url 'scheme2024' %} "> 2024 Scheme</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!-- end header section -->
+  </div>
+
+  <div class="container">
+    <h2>NOTES for {{ semester.branch_id.branch_name }} - Semester {{ semester.sem_number }}</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1 header">Subject</div>
+        <div class="col col-2 header">Link</div>
+      </li>
+      {% for note in notes %}
+      <li class="table-row">
+        <div class="col col-1" data-label="Subject">All Notes</div>
+        <div class="col col-2" data-label="Link"><a href="{{ note.notes_link }}" target="_blank">Click Here</a></div>
+      </li>
+      {% empty %}
+      <li class="table-row">
+        <div class="col col-1" data-label="Subject" style="text-align: center;">No Notes available at the moment</div>
+        <div class="col col-1" data-label="Link"></div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="container">
+    <h2>YOUTUBE VIDOES for {{ semester.branch_id.branch_name }} - Semester {{ semester.sem_number }}</h2>
+    <ul class="responsive-table">
+      <li class="table-header">
+        <div class="col col-1 header">Subject</div>
+        <div class="col col-2 header">Link</div>
+      </li>
+      {% for video in yt_links %}
+      <li class="table-row">
+        <div class="col col-1" data-label="Subject">{{ video.subject_name }}</div>
+        <div class="col col-2" data-label="Link"><a href="{{ video.links }}" target="_blank">Click Here</a></div>
+      </li>
+      {% empty %}
+      <li class="table-row">
+        <div class="col col-1" data-label="Subject" style="text-align: center;">No videos available at the moment</div>
+        <div class="col col-2" data-label="Link"></div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <!-- footer section -->
+  <footer class="container-fluid footer_section">
+    <p>
+      &copy; 2020 All Rights Reserved. Design by
+      <a href="https://html.design/">Free Html Templates</a>
+    </p>
+  </footer>
+  <!-- footer section -->
+
+  <script src=" {% static 'ktuguideapp/js/jquery-3.4.1.min.js' %} "></script>
+  <script src=" {% static 'ktuguideapp/js/bootstrap.js' %} "></script>
+
+</body>
+
+</html>
